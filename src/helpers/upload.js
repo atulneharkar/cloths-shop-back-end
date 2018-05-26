@@ -38,3 +38,28 @@ export const avatarUpload = multer({
   },
   fileFilter
 }).single('avatar');
+
+/* storge for clothes */
+const clothesStorage = multer.diskStorage({
+  'destination': `${UPLOAD_PATH}/clothes/`,
+  'filename': (req, file, cb) => {
+    const uploadedFileName = file.originalname.split('.');
+    const fileName = uploadedFileName[0];
+    const ext = uploadedFileName[1];
+
+    cb(null, `${fileName}-${Date.now()}-${req.user._id}-clothes.${ext}`);
+  }
+});
+
+/* required config for clothes upload */
+export const clothesUpload = multer({
+  'storage': clothesStorage,
+  'limits': {
+    'fileSize': 5000000 /* in bytes 1000000b = 1mb*/
+  },
+  'onFileSizeLimit': file => {
+    /* delete the partially written file */
+    fs.unlink(path.join(__dirname, `./../../${file.path}`));
+  },
+  fileFilter
+}).single('clothes');

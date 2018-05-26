@@ -153,7 +153,7 @@ export const setAvatar = (req, res) => {
 
       res.send(user);
     })
-    .catch(err => {console.log(err);
+    .catch(err => {
       res.status(400).send('Unable to set profile pic, Please try again');
     });
 };

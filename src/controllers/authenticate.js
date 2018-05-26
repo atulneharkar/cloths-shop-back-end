@@ -140,7 +140,7 @@ export const sendOTPLink = (req, res) => {
         'userID': user._id
       });
     })
-    .catch(err => {console.log(err);
+    .catch(err => {
       const errCode = err && err.status ? err.status : 400;
       const errMsg = errCode === 404 ?
                     'No such user registered' :

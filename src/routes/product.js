@@ -13,7 +13,7 @@ import {
 } from '../controllers/product';
 
 /* pic upload */
-import { avatarUpload } from '../helpers/upload';
+import { avatarUpload, clothesUpload } from '../helpers/upload';
 
 /* all middlewares */
 import { isAuthorizedUser } from '../middlewares/authenticate';
@@ -57,16 +57,16 @@ productRoutes.put('/removeFromCart/:productId/:userId', isAuthorizedUser, remove
 productRoutes.put('/:id', isAuthorizedUser, updateProduct);
 
 /**
- * route to delete existing trending
- * DELETE /trending/new
+ * route to delete existing product
+ * DELETE /product/new
  */
 productRoutes.delete('/:id', isAuthorizedUser, removeProduct);
 
 /**
- * route to set trending image
- * POST /trending/trendingImage
+ * route to set product image
+ * POST /product/productImage
  */
-productRoutes.post('/productImage/:id', isAuthorizedUser, avatarUpload, setProductImage);
+productRoutes.post('/productImage/:id', isAuthorizedUser, clothesUpload, setProductImage);
 
 
 export default productRoutes;

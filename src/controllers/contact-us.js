@@ -22,7 +22,7 @@ export const addUserQuery = (req, res) => {
       from: 'info.skillunfold@gmail.com',
       to : req.body.email,
       subject : "Skillunfold.com - Query recieved, admin will contact you shortly",
-      text : queryTemplate
+      text : userQueryTemplate()
     }
 
     smtpTransport.sendMail(userMailOptions, function(error, response) {

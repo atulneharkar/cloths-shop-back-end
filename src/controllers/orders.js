@@ -18,8 +18,6 @@ export const createOrder = (req, res) => {
     'userId': req.body.userId,
     'productSize': req.body.productSize
   }); 
-  console.log(req.body.productList);
-  console.log(req.body.productDetails);
 
   order.save().then(() => {
     User.findByIdAndUpdate(req.body.userId, {
